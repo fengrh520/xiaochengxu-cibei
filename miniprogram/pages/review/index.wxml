@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="review-hero"><view><view class="review-hero-label">今日复习</view><view class="review-hero-title">把该复习的先清掉</view><view class="review-hero-desc">优先处理到期词、收藏词和错词，让复习更有节奏。</view></view><view class="review-hero-badge">{{totalQueueCount}} 项</view></view>
+  <view class="filter-row">
+    <view class="filter-chip {{activeFilter === 'all' ? 'filter-chip--active' : ''}}" data-filter="all" bindtap="onFilterTap">全部</view>
+    <view class="filter-chip {{activeFilter === 'urgent' ? 'filter-chip--active' : ''}}" data-filter="urgent" bindtap="onFilterTap">到期优先</view>
+    <view class="filter-chip {{activeFilter === 'favorites' ? 'filter-chip--active' : ''}}" data-filter="favorites" bindtap="onFilterTap">收藏</view>
+    <view class="filter-chip {{activeFilter === 'mistakes' ? 'filter-chip--active' : ''}}" data-filter="mistakes" bindtap="onFilterTap">错词</view>
+  </view>
+  <view class="section-card"><view class="section-title">复习队列</view><block wx:for="{{filteredQueueCards}}" wx:key="id"><view class="queue-card" bindtap="onQueueTap" data-mode="{{item.id}}"><view><view class="queue-top"><view class="queue-title">{{item.title}}</view><view class="priority-badge priority-badge--{{item.priority}}">{{item.priority === 'urgent' ? '优先' : item.priority === 'focus' ? '重点' : item.priority === 'warning' ? '巩固' : '常规'}}</view></view><view class="queue-desc">{{item.desc}}</view></view><view class="queue-side"><text class="queue-count">{{item.count}}</text><text class="queue-link">开始</text></view></view></block></view>
+  <view class="section-card"><view class="section-title">薄弱词提醒</view><block wx:if="{{weakWords.length}}"><block wx:for="{{weakWords}}" wx:key="id"><view class="list-row"><view><view class="queue-title">{{item.word}}</view><view class="queue-desc">{{item.translation}}</view></view><view class="pill">错 {{item.wrongCount}} 次</view></view></block></block><view wx:else class="queue-desc">当前没有明显薄弱词，继续保持。</view></view>
+</view>

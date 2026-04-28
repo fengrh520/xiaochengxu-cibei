@@ -1,0 +1,27 @@
+@import "../../styles/tokens.wxss";
+.page { padding: 24rpx 24rpx 40rpx; background: linear-gradient(180deg, #eef2ff 0%, #f4f7fb 240rpx, #f4f7fb 100%); }
+.review-hero { display: flex; justify-content: space-between; gap: 20rpx; padding: 30rpx; border-radius: 30rpx; background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%); box-shadow: var(--shadow-card); margin-bottom: 20rpx; }
+.review-hero-label { font-size: 22rpx; color: var(--brand); }
+.review-hero-title { margin-top: 12rpx; font-size: 40rpx; font-weight: 700; color: var(--text-primary); }
+.review-hero-desc { margin-top: 12rpx; font-size: 24rpx; line-height: 1.7; color: var(--text-secondary); max-width: 460rpx; }
+.review-hero-badge { height: fit-content; padding: 12rpx 18rpx; border-radius: 999rpx; background: var(--brand); color: #fff; font-size: 22rpx; }
+.filter-row { display: flex; gap: 14rpx; overflow-x: auto; padding-bottom: 8rpx; margin-bottom: 20rpx; }
+.filter-chip { flex-shrink: 0; padding: 12rpx 20rpx; border-radius: 999rpx; background: #fff; color: var(--text-secondary); font-size: 22rpx; box-shadow: var(--shadow-card); }
+.filter-chip--active { background: var(--brand); color: #fff; }
+.section-card { margin-bottom: 24rpx; background: var(--surface); border-radius: 30rpx; padding: 24rpx; box-shadow: var(--shadow-card); }
+.section-title,.queue-title { color: var(--text-primary); font-weight: 700; }
+.section-title { font-size: 30rpx; margin-bottom: 12rpx; }
+.queue-card,.list-row { display: flex; justify-content: space-between; align-items: center; gap: 20rpx; padding: 24rpx 0; border-bottom: 1rpx solid var(--border-color); }
+.queue-card:last-child,.list-row:last-child { border-bottom: none; padding-bottom: 0; }
+.queue-top { display: flex; align-items: center; gap: 14rpx; }
+.queue-title { font-size: 30rpx; }
+.queue-desc { margin-top: 8rpx; color: var(--text-secondary); font-size: 24rpx; line-height: 1.7; }
+.priority-badge { padding: 8rpx 14rpx; border-radius: 999rpx; font-size: 20rpx; }
+.priority-badge--urgent { background: #fee2e2; color: #b91c1c; }
+.priority-badge--focus { background: #ede9fe; color: #6d28d9; }
+.priority-badge--warning { background: #fef3c7; color: #b45309; }
+.priority-badge--normal { background: #e2e8f0; color: #475569; }
+.queue-side { display: flex; flex-direction: column; align-items: flex-end; gap: 10rpx; }
+.queue-count { font-size: 42rpx; color: var(--brand); font-weight: 700; }
+.queue-link { padding: 8rpx 18rpx; border-radius: 999rpx; background: var(--brand-soft); color: var(--brand); font-size: 22rpx; }
+.pill { padding: 10rpx 18rpx; border-radius: 999rpx; background: #fef2f2; color: var(--danger); font-size: 22rpx; }

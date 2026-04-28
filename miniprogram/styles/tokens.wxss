@@ -1,0 +1,21 @@
+page {
+  background: #f4f7fb;
+  color: #0f172a;
+  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  --brand: #4f46e5;
+  --brand-strong: #312e81;
+  --brand-soft: #eef2ff;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --shadow-card: 0 18rpx 44rpx rgba(15, 23, 42, 0.08);
+  --shadow-hero: 0 24rpx 56rpx rgba(79, 70, 229, 0.22);
+}

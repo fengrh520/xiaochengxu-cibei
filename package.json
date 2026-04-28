@@ -1,0 +1,14 @@
+{
+  "name": "word-app-miniprogram",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Native WeChat Mini Program scaffold",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "prepare:miniprogram": "npm run typecheck"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^4.0.5",
+    "typescript": "^5.8.3"
+  }
+}
