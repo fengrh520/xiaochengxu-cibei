@@ -1,3 +1,9 @@
 {
-  "desc": "generated"
+  "desc": "default sitemap",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
 }

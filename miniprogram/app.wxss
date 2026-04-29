@@ -1,1 +1,16 @@
 @import "styles/tokens.wxss";
+
+view,
+text,
+button {
+  box-sizing: border-box;
+}
+
+button {
+  padding: 0 28rpx;
+  line-height: 1.2;
+}
+
+button::after {
+  border: none;
+}

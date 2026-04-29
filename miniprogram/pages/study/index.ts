@@ -1,8 +1,8 @@
 import { buildSession, getWordProgress, loadState, saveState, toggleFavorite, updateWordOutcome } from '../../utils/state';
 import type { StudyMode, WordEntry } from '../../utils/types';
 
-const AUTO_NEXT_DELAY = 220;
-const ENTER_RESET_DELAY = 40;
+const AUTO_NEXT_DELAY = 280;
+const ENTER_RESET_DELAY = 60;
 
 Page({
   audioCtx: null as WechatMiniprogram.InnerAudioContext | null,
@@ -25,7 +25,13 @@ Page({
     const mode = (query.mode || 'study') as StudyMode;
     const state = loadState();
     const words = buildSession(state, mode);
-    const labels: Record<StudyMode, string> = { study: '学习新词', review: '到期复习', favorites: '收藏巩固', mistakes: '错词回看' };
+    const labels: Record<StudyMode, string> = {
+      study: '学习新词',
+      review: '到期复习',
+      favorites: '收藏巩固',
+      mistakes: '错词回看'
+    };
+
     this.audioCtx = wx.createInnerAudioContext();
     this.audioCtx.obeyMuteSwitch = false;
     this.audioCtx.onPlay(() => this.setData({ speaking: true }));
@@ -35,10 +41,12 @@ Page({
       this.setData({ speaking: false });
       wx.showToast({ title: '当前单词暂时无法发音', icon: 'none' });
     });
+
     if (!words.length) {
       this.setData({ finished: true, modeLabel: labels[mode] || '学习模式' });
       return;
     }
+
     this.setData({
       modeLabel: labels[mode] || '学习模式',
       words,

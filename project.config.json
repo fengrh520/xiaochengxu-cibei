@@ -1,8 +1,8 @@
 {
-  "appid": "touristappid",
+  "appid": "wx62d842d067e3586e",
   "projectname": "word-app-miniprogram",
   "compileType": "miniprogram",
-  "libVersion": "trial",
+  "libVersion": "3.15.2",
   "miniprogramRoot": "miniprogram/",
   "srcMiniprogramRoot": "miniprogram/",
   "setting": {

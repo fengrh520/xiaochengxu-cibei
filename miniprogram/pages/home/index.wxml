@@ -1,16 +1,131 @@
 <view class="page page-home">
-  <view class="hero-card" bindtap="onHeroTap">
-    <view class="hero-top">
-      <view><text class="badge">今日学习</text><view class="hero-title">今天先把这轮学完</view><view class="hero-subtitle">当前词书：{{activeBookName}}，优先安排未学词、到期词和薄弱词。</view></view>
-      <view class="hero-stat"><text class="hero-stat-label">待复习</text><text class="hero-stat-value">{{reviewQueueCount}}</text></view>
+  <view class="home-bg home-bg--one"></view>
+  <view class="home-bg home-bg--two"></view>
+
+  <view class="home-hero reveal delay-1" bindtap="onHeroTap">
+    <view class="home-hero__shine"></view>
+    <view class="home-hero__top">
+      <view class="home-hero__content">
+        <text class="hero-chip">今日计划</text>
+        <view class="hero-title">把今天这轮单词拿下</view>
+        <view class="hero-subtitle">当前词书 {{activeBookName}}，优先安排新词、到期词和薄弱词。</view>
+      </view>
+      <view class="hero-aside">
+        <text class="hero-aside__label">待复习</text>
+        <text class="hero-aside__value">{{reviewQueueCount}}</text>
+      </view>
     </view>
-    <view class="hero-progress"><view class="hero-progress-bar" style="width: {{completionRate}}%;"></view></view>
-    <view class="hero-progress-text">今日进度 {{completionRate}}%</view>
-    <view class="hero-footer"><view class="hero-footer-item"><text class="hero-footer-label">今日目标</text><text class="hero-footer-value">{{studiedToday}} / {{todayGoal}}</text></view><view class="hero-footer-item"><text class="hero-footer-label">连续打卡</text><text class="hero-footer-value">{{streak}} 天</text></view></view>
-    <button class="primary-button" bindtap="onStartStudy">开始今日学习</button>
+
+    <view class="hero-progress-wrap">
+      <view class="hero-progress">
+        <view class="hero-progress__bar" style="width: {{completionRate}}%;"></view>
+      </view>
+      <view class="hero-progress__text">今日进度 {{completionRate}}%</view>
+    </view>
+
+    <view class="hero-meta">
+      <view class="hero-meta__item">
+        <text class="hero-meta__label">今日目标</text>
+        <text class="hero-meta__value">{{studiedToday}} / {{todayGoal}}</text>
+      </view>
+      <view class="hero-meta__item">
+        <text class="hero-meta__label">连续学习</text>
+        <text class="hero-meta__value">{{streak}} 天</text>
+      </view>
+    </view>
+
+    <view class="hero-cta-row">
+      <button class="hero-button" bindtap="onStartStudy">开始今日学习</button>
+      <view class="hero-cta-note">优先推进新词，再穿插处理复习词。</view>
+    </view>
   </view>
-  <view class="metrics-grid"><view class="metric-card metric-card--accent" bindtap="onMetricTap" data-target="study"><text class="metric-label">今日学习</text><text class="metric-value">{{studiedToday}} / {{todayGoal}}</text><text class="metric-helper">按日目标推进</text></view><view class="metric-card" bindtap="onMetricTap" data-target="review"><text class="metric-label">待复习</text><text class="metric-value">{{reviewQueueCount}}</text><text class="metric-helper">到期词与薄弱词</text></view><view class="metric-card" bindtap="onMetricTap" data-target="me"><text class="metric-label">连续打卡</text><text class="metric-value">{{streak}}</text><text class="metric-helper">持续节奏感</text></view><view class="metric-card" bindtap="onMetricTap" data-target="me"><text class="metric-label">正确率</text><text class="metric-value">{{accuracy}}</text><text class="metric-helper">累计答题表现</text></view></view>
-  <view class="section-card"><view class="section-header"><text class="section-title">近 7 天趋势</text><text class="section-desc">每天至少背一点</text></view><view class="trend-chart"><block wx:for="{{trendDays}}" wx:key="label"><view class="trend-item"><view class="trend-bar-wrap"><view class="trend-bar" style="height: {{item.height}}rpx;"></view></view><text class="trend-value">{{item.value}}</text><text class="trend-label">{{item.label}}</text></view></block></view></view>
-  <view class="section-card"><view class="section-header"><text class="section-title">快捷入口</text><text class="section-desc">从常用动作里快速进入</text></view><block wx:for="{{quickActions}}" wx:key="id"><view class="action-row" data-action="{{item.id}}" bindtap="onQuickActionTap"><view class="action-icon">{{item.id === 'study' ? '学' : item.id === 'review' ? '复' : item.id === 'books' ? '书' : '错'}}</view><view class="action-title-wrap"><view class="action-title">{{item.label}}</view><view class="action-desc">{{item.desc}}</view></view><text class="action-arrow">›</text></view></block></view>
-  <view class="section-card" bindtap="onWeakWordsTap"><view class="section-header"><text class="section-title">薄弱词预览</text><text class="section-link">优先处理</text></view><block wx:if="{{weakWords.length}}"><block wx:for="{{weakWords}}" wx:key="id"><view class="word-row"><view class="word-main"><view class="word-title">{{item.word}}</view><view class="word-desc">{{item.translation}}</view><view class="word-meta"><view class="pill">掌握 {{item.mastery}}%</view><view class="pill pill-danger">错 {{item.wrongCount}} 次</view></view></view><text class="action-arrow">›</text></view></block></block><view wx:else class="empty-tip">当前没有明显薄弱词，继续保持。</view></view>
+
+  <view class="metrics-grid reveal delay-2">
+    <view class="metric-card metric-card--primary" bindtap="onMetricTap" data-target="study">
+      <text class="metric-label">今日学习</text>
+      <text class="metric-value">{{studiedToday}} / {{todayGoal}}</text>
+      <text class="metric-helper">沿着目标继续推进</text>
+    </view>
+    <view class="metric-card" bindtap="onMetricTap" data-target="review">
+      <text class="metric-label">待复习</text>
+      <text class="metric-value">{{reviewQueueCount}}</text>
+      <text class="metric-helper">到期词与薄弱词</text>
+    </view>
+    <view class="metric-card" bindtap="onMetricTap" data-target="me">
+      <text class="metric-label">连续学习</text>
+      <text class="metric-value">{{streak}}</text>
+      <text class="metric-helper">保持节奏感</text>
+    </view>
+    <view class="metric-card" bindtap="onMetricTap" data-target="me">
+      <text class="metric-label">正确率</text>
+      <text class="metric-value">{{accuracy}}</text>
+      <text class="metric-helper">累计答题表现</text>
+    </view>
+  </view>
+
+  <view class="section-card reveal delay-3">
+    <view class="section-head">
+      <view>
+        <view class="section-title">近 7 天走势</view>
+        <view class="section-desc">把学习频率稳定下来，进步会更明显。</view>
+      </view>
+      <text class="section-tag">趋势</text>
+    </view>
+    <view class="trend-chart">
+      <block wx:for="{{trendDays}}" wx:key="label">
+        <view class="trend-item">
+          <view class="trend-bar-wrap">
+            <view class="trend-bar" style="height: {{item.height}}rpx;"></view>
+          </view>
+          <text class="trend-value">{{item.value}}</text>
+          <text class="trend-label">{{item.label}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="section-card reveal delay-4">
+    <view class="section-head">
+      <view>
+        <view class="section-title">快捷入口</view>
+        <view class="section-desc">用更短的路径进入今天最重要的动作。</view>
+      </view>
+    </view>
+    <view class="action-grid">
+      <block wx:for="{{quickActions}}" wx:key="id">
+        <view class="action-card" data-action="{{item.id}}" bindtap="onQuickActionTap">
+          <view class="action-icon">{{item.id === 'study' ? '学' : item.id === 'review' ? '复' : item.id === 'books' ? '书' : '错'}}</view>
+          <view class="action-title">{{item.label}}</view>
+          <view class="action-desc">{{item.desc}}</view>
+          <text class="action-link">立即进入 ></text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="section-card reveal delay-5" bindtap="onWeakWordsTap">
+    <view class="section-head">
+      <view>
+        <view class="section-title">薄弱词预览</view>
+        <view class="section-desc">优先攻克最容易掉链子的词。</view>
+      </view>
+      <text class="section-link">立即巩固 ></text>
+    </view>
+    <block wx:if="{{weakWords.length}}">
+      <block wx:for="{{weakWords}}" wx:key="id">
+        <view class="weak-row">
+          <view class="weak-main">
+            <view class="weak-word">{{item.word}}</view>
+            <view class="weak-translation">{{item.translation}}</view>
+            <view class="weak-meta">
+              <text class="pill">掌握 {{item.mastery}}%</text>
+              <text class="pill pill-danger">错 {{item.wrongCount}} 次</text>
+            </view>
+          </view>
+          <text class="weak-arrow">></text>
+        </view>
+      </block>
+    </block>
+    <view wx:else class="empty-tip">当前没有明显薄弱词，继续保持这个节奏。</view>
+  </view>
 </view>

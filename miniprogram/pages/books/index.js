@@ -19,9 +19,9 @@ Page({
     saveState(nextState);
     const currentBook = getActiveBook(nextState);
     this.setData({ currentBook, bookMetrics: getBookMetrics(nextState, currentBook), allBooks: nextState.books });
-    wx.showToast({ title: `已切换到 ${currentBook.name}`, icon: 'none' });
+    wx.showToast({ title: '已切换到 ' + currentBook.name, icon: 'none' });
   },
   onFeatureTap() {
-    wx.showToast({ title: '文件导入和备份恢复将在后续版本补齐', icon: 'none' });
+    wx.showToast({ title: '导入和备份会在后续版本补齐', icon: 'none' });
   }
 });

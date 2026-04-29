@@ -1,25 +1,83 @@
 <view class="page study-page">
-  <view class="study-header"><view><view class="study-mode">{{modeLabel}}</view><view class="study-progress" wx:if="{{!finished}}">{{currentIndex + 1}} / {{words.length}}</view></view><view class="study-score">记住 {{summary.remembered}} · 忘记 {{summary.forgotten}}</view></view>
-  <view wx:if="{{finished}}" class="finish-card">
+  <view class="study-orbit study-orbit--one"></view>
+  <view class="study-orbit study-orbit--two"></view>
+
+  <view class="study-header reveal delay-1">
+    <view>
+      <view class="study-mode">{{modeLabel}}</view>
+      <view class="study-progress" wx:if="{{!finished}}">{{currentIndex + 1}} / {{words.length}}</view>
+    </view>
+    <view class="study-score">记住 {{summary.remembered}} · 待巩固 {{summary.forgotten}}</view>
+  </view>
+
+  <view wx:if="{{finished}}" class="finish-card reveal delay-2">
     <view class="finish-title">本轮完成</view>
-    <view class="finish-desc">你已经完成本轮学习，会话结果已同步到首页、复习页和“我的”页。</view>
-    <view class="finish-metrics"><view class="finish-metric"><view class="finish-metric-value">{{summary.remembered}}</view><view class="finish-metric-label">记住了</view></view><view class="finish-metric"><view class="finish-metric-value">{{summary.forgotten}}</view><view class="finish-metric-label">忘记了</view></view></view>
+    <view class="finish-desc">这一轮学习结果已经同步到首页、复习页和“我的”页，可以继续下一轮或回去查看统计。</view>
+    <view class="finish-metrics">
+      <view class="finish-metric">
+        <view class="finish-metric-value">{{summary.remembered}}</view>
+        <view class="finish-metric-label">记住了</view>
+      </view>
+      <view class="finish-metric">
+        <view class="finish-metric-value">{{summary.forgotten}}</view>
+        <view class="finish-metric-label">待巩固</view>
+      </view>
+    </view>
     <button class="primary-button" bindtap="onFinishBack">返回上一页</button>
   </view>
-  <view wx:elif="{{currentWord}}" class="study-card {{answering ? 'is-answering' : ''}} {{cardStage === 'leave' ? 'stage-leave' : ''}} {{cardStage === 'enter' ? 'stage-enter' : ''}}">
-    <view class="study-card-top"><view><view class="study-word">{{currentWord.word}}</view><view class="study-phonetic-row"><view class="study-phonetic">{{currentWord.phonetic || '暂无音标'}}</view><view class="pronounce-button {{speaking ? 'is-speaking' : ''}}" bindtap="onPronounce">{{speaking ? '播放中' : '发音'}}</view></view></view><view class="tag tag-fav" bindtap="onToggleFavorite">{{progress.favorite ? '已收藏' : '收藏'}}</view></view>
-    <view class="study-tags"><view class="tag">掌握 {{progress.mastery}}%</view><view class="tag">已学 {{progress.seenCount}} 次</view><view class="tag">错词 {{progress.wrongCount}} 次</view></view>
+
+  <view wx:elif="{{currentWord}}" class="study-card reveal delay-2 {{answering ? 'is-answering' : ''}} {{cardStage === 'leave' ? 'stage-leave' : ''}} {{cardStage === 'enter' ? 'stage-enter' : ''}}">
+    <view class="study-card__glow"></view>
+    <view class="study-card__paper"></view>
+    <view class="study-card-top">
+      <view class="study-card-main">
+        <view class="study-word">{{currentWord.word}}</view>
+        <view class="study-phonetic-row">
+          <view class="study-phonetic">{{currentWord.phonetic || '当前无音标'}}</view>
+          <view class="pronounce-button {{speaking ? 'is-speaking' : ''}}" bindtap="onPronounce">{{speaking ? '播放中' : '发音'}}</view>
+        </view>
+      </view>
+      <view class="study-tools">
+        <view class="tag tag-fav" bindtap="onToggleFavorite">{{progress.favorite ? '已收藏' : '收藏'}}</view>
+      </view>
+    </view>
+
+    <view class="study-tags">
+      <view class="tag">掌握 {{progress.mastery}}%</view>
+      <view class="tag">已学 {{progress.seenCount}} 次</view>
+      <view class="tag">错词 {{progress.wrongCount}} 次</view>
+    </view>
+
     <view wx:if="{{revealed}}" class="meaning-panel">
       <view class="meaning-title">{{currentWord.translation}}</view>
       <view class="meaning-line" wx:if="{{currentWord.partOfSpeech}}">词性：{{currentWord.partOfSpeech}}</view>
-      <view class="meaning-block" wx:if="{{currentWord.example}}"><view class="meaning-label">例句</view><view class="meaning-line">{{currentWord.example}}</view></view>
-      <view class="meaning-block" wx:if="{{currentWord.mnemonic}}"><view class="meaning-label">记忆法</view><view class="meaning-line">{{currentWord.mnemonic}}</view></view>
-      <view class="meaning-block" wx:if="{{currentWord.root}}"><view class="meaning-label">词根联想</view><view class="meaning-line">{{currentWord.root}}</view></view>
+      <view class="meaning-block" wx:if="{{currentWord.example}}">
+        <view class="meaning-label">例句</view>
+        <view class="meaning-line">{{currentWord.example}}</view>
+      </view>
+      <view class="meaning-block" wx:if="{{currentWord.mnemonic}}">
+        <view class="meaning-label">记忆法</view>
+        <view class="meaning-line">{{currentWord.mnemonic}}</view>
+      </view>
+      <view class="meaning-block" wx:if="{{currentWord.root}}">
+        <view class="meaning-label">词根联想</view>
+        <view class="meaning-line">{{currentWord.root}}</view>
+      </view>
     </view>
-    <view wx:else class="hint-panel"><view class="hint-title">先自己回忆一下</view><view class="hint-text">先尝试回想释义、例句或记忆线索，再点“显示答案”，更接近主流背词 App 的真实学习节奏。</view></view>
+
+    <view wx:else class="hint-panel">
+      <view class="hint-title">先自己回忆一下</view>
+      <view class="hint-text">先尝试回想释义、例句或记忆线索，再点击“显示答案”，会更接近真实学习时的记忆过程。</view>
+    </view>
+
     <view class="answering-tip" wx:if="{{answering}}">已记录结果，正在进入下一词...</view>
-    <view class="action-group" wx:if="{{!revealed}}"><button class="primary-button" bindtap="onReveal">显示答案</button></view>
-    <view class="action-group dual" wx:else><button class="ghost-button" data-remembered="false" bindtap="onAnswer" disabled="{{answering}}">忘记了</button><button class="primary-button" data-remembered="true" bindtap="onAnswer" disabled="{{answering}}">记住了</button></view>
+
+    <view class="action-group" wx:if="{{!revealed}}">
+      <button class="primary-button" bindtap="onReveal">显示答案</button>
+    </view>
+    <view class="action-group dual" wx:else>
+      <button class="ghost-button" data-remembered="false" bindtap="onAnswer" disabled="{{answering}}">忘记了</button>
+      <button class="primary-button" data-remembered="true" bindtap="onAnswer" disabled="{{answering}}">记住了</button>
+    </view>
   </view>
 </view>
-

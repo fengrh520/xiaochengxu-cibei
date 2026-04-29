@@ -7,8 +7,8 @@ const {
   updateWordOutcome
 } = require('../../utils/state');
 
-const AUTO_NEXT_DELAY = 220;
-const ENTER_RESET_DELAY = 40;
+const AUTO_NEXT_DELAY = 280;
+const ENTER_RESET_DELAY = 60;
 
 Page({
   audioCtx: null,

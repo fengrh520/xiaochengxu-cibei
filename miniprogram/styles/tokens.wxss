@@ -1,21 +1,120 @@
 page {
-  background: #f4f7fb;
-  color: #0f172a;
-  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  background: #f7f4ee;
+  color: #1f2c2a;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 :root {
-  --brand: #4f46e5;
-  --brand-strong: #312e81;
-  --brand-soft: #eef2ff;
-  --success: #16a34a;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --surface: #ffffff;
-  --surface-soft: #f8fafc;
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --border-color: #e2e8f0;
-  --shadow-card: 0 18rpx 44rpx rgba(15, 23, 42, 0.08);
-  --shadow-hero: 0 24rpx 56rpx rgba(79, 70, 229, 0.22);
+  --bg-page: #f7f4ee;
+  --bg-page-alt: #efe9df;
+  --brand: #4f7a6c;
+  --brand-deep: #274740;
+  --brand-soft: #e8f0ed;
+  --brand-cyan: #9cb7b5;
+  --accent-warm: #d8ab68;
+  --success: #2e8b57;
+  --warning: #c58d45;
+  --danger: #c96a57;
+  --ink-strong: #1f2c2a;
+  --ink: #30403d;
+  --ink-soft: #6d7b77;
+  --line: rgba(95, 111, 107, 0.16);
+  --surface: rgba(255, 253, 248, 0.94);
+  --surface-soft: rgba(249, 246, 240, 0.96);
+  --surface-strong: #fffdf8;
+  --shadow-card: 0 18rpx 48rpx rgba(50, 55, 50, 0.08);
+  --shadow-card-lg: 0 24rpx 60rpx rgba(50, 55, 50, 0.12);
+  --shadow-hero: 0 28rpx 70rpx rgba(39, 71, 64, 0.14);
+  --radius-xl: 34rpx;
+  --radius-lg: 28rpx;
+  --radius-md: 22rpx;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18rpx, 0) scale(0.988);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8rpx, 0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(12rpx, -10rpx, 0) scale(1.02);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-140%);
+  }
+  100% {
+    transform: translateX(160%);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(79, 122, 108, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 12rpx rgba(79, 122, 108, 0.08);
+  }
+}
+
+@keyframes reveal-panel {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10rpx, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.reveal {
+  opacity: 1;
+  animation-name: rise-in;
+  animation-duration: 520ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.delay-1 {
+  animation-delay: 40ms;
+}
+
+.delay-2 {
+  animation-delay: 120ms;
+}
+
+.delay-3 {
+  animation-delay: 180ms;
+}
+
+.delay-4 {
+  animation-delay: 240ms;
+}
+
+.delay-5 {
+  animation-delay: 300ms;
 }

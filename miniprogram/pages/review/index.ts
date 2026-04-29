@@ -25,9 +25,9 @@ Page({
     const favoriteSession = buildSession(state, 'favorites');
     const mistakeSession = buildSession(state, 'mistakes');
     const queueCards: QueueCard[] = [
-      { id: 'review', title: 'Due Review', desc: 'Handle due words first.', count: reviewSession.length, priority: reviewSession.length ? 'urgent' : 'normal', filter: 'urgent' },
-      { id: 'favorites', title: 'Favorites', desc: 'Review starred words again.', count: favoriteSession.length, priority: favoriteSession.length ? 'focus' : 'normal', filter: 'favorites' },
-      { id: 'mistakes', title: 'Mistakes', desc: 'Strengthen wrong answers.', count: mistakeSession.length, priority: mistakeSession.length ? 'warning' : 'normal', filter: 'mistakes' }
+      { id: 'review', title: '到期复习', desc: '优先消化到期词和掌握度不稳的内容。', count: reviewSession.length, priority: reviewSession.length ? 'urgent' : 'normal', filter: 'urgent' },
+      { id: 'favorites', title: '收藏巩固', desc: '回看你标记收藏的重点词。', count: favoriteSession.length, priority: favoriteSession.length ? 'focus' : 'normal', filter: 'favorites' },
+      { id: 'mistakes', title: '错词回看', desc: '针对错词做再次识别和强化记忆。', count: mistakeSession.length, priority: mistakeSession.length ? 'warning' : 'normal', filter: 'mistakes' }
     ];
     this.setData({
       queueCards,
@@ -51,7 +51,7 @@ Page({
     const state = loadState();
     const session = buildSession(state, mode);
     if (!session.length) {
-      wx.showToast({ title: 'Nothing available', icon: 'none' });
+      wx.showToast({ title: '当前没有可进入的复习内容', icon: 'none' });
       return;
     }
     wx.navigateTo({ url: `/pages/study/index?mode=${mode}` });

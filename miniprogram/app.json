@@ -7,7 +7,7 @@
     "pages/study/index"
   ],
   "window": {
-    "navigationBarTitleText": "鍗曡瘝瀛︿範",
+    "navigationBarTitleText": "词背",
     "navigationBarBackgroundColor": "#F8FAFC",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F8FAFC",
@@ -19,12 +19,33 @@
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
     "list": [
-      { "pagePath": "pages/home/index", "text": "棣栭〉", "iconPath": "images/tab/home.png", "selectedIconPath": "images/tab/home-active.png" },
-      { "pagePath": "pages/books/index", "text": "璇嶄功", "iconPath": "images/tab/books.png", "selectedIconPath": "images/tab/books-active.png" },
-      { "pagePath": "pages/review/index", "text": "澶嶄範", "iconPath": "images/tab/review.png", "selectedIconPath": "images/tab/review-active.png" },
-      { "pagePath": "pages/me/index", "text": "鎴戠殑", "iconPath": "images/tab/me.png", "selectedIconPath": "images/tab/me-active.png" }
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "images/tab/home.png",
+        "selectedIconPath": "images/tab/home-active.png"
+      },
+      {
+        "pagePath": "pages/books/index",
+        "text": "词书",
+        "iconPath": "images/tab/books.png",
+        "selectedIconPath": "images/tab/books-active.png"
+      },
+      {
+        "pagePath": "pages/review/index",
+        "text": "复习",
+        "iconPath": "images/tab/review.png",
+        "selectedIconPath": "images/tab/review-active.png"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "我的",
+        "iconPath": "images/tab/me.png",
+        "selectedIconPath": "images/tab/me-active.png"
+      }
     ]
   },
+  "lazyCodeLoading": "requiredComponents",
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

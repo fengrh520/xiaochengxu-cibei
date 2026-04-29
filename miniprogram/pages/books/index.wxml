@@ -1,5 +1,65 @@
-<view class="page">
-  <view class="section-card feature-card" wx:if="{{currentBook}}"><view class="section-title">当前词书</view><view class="book-title">{{currentBook.name}}</view><view class="book-desc">{{currentBook.description}}</view><view class="book-metrics"><view class="metric-box"><text class="metric-value">{{bookMetrics.total}}</text><text class="metric-label">总词数</text></view><view class="metric-box"><text class="metric-value">{{bookMetrics.studied}}</text><text class="metric-label">已学习</text></view><view class="metric-box"><text class="metric-value">{{bookMetrics.mastered}}</text><text class="metric-label">已掌握</text></view><view class="metric-box"><text class="metric-value">{{bookMetrics.due}}</text><text class="metric-label">待复习</text></view></view></view>
-  <view class="section-card"><view class="section-title">切换词书</view><block wx:for="{{allBooks}}" wx:key="id"><view class="list-row {{currentBook && currentBook.id === item.id ? 'list-row--active' : ''}}" bindtap="onSelectBook" data-id="{{item.id}}"><view><view class="list-title">{{item.name}}</view><view class="muted">{{item.exam}} · {{item.description}}</view></view><text class="list-link">{{currentBook && currentBook.id === item.id ? '当前使用' : '切换'}}</text></view></block></view>
-  <view class="section-card"><view class="section-title">导入与备份</view><view class="muted">当前版本先聚焦核心学习闭环；文件导入、备份恢复会在后续版本继续补齐。</view><button class="secondary-button" bindtap="onFeatureTap">查看规划说明</button></view>
+<view class="page books-page">
+  <view class="books-glow books-glow--one"></view>
+  <view class="books-glow books-glow--two"></view>
+
+  <view class="book-hero reveal delay-1" wx:if="{{currentBook}}">
+    <view class="book-hero__top">
+      <view>
+        <text class="book-chip">当前词书</text>
+        <view class="book-title">{{currentBook.name}}</view>
+        <view class="book-desc">{{currentBook.description}}</view>
+      </view>
+      <view class="book-exam">{{currentBook.exam}}</view>
+    </view>
+    <view class="book-metrics">
+      <view class="metric-box">
+        <text class="metric-value">{{bookMetrics.total}}</text>
+        <text class="metric-label">总词数</text>
+      </view>
+      <view class="metric-box">
+        <text class="metric-value">{{bookMetrics.studied}}</text>
+        <text class="metric-label">已学习</text>
+      </view>
+      <view class="metric-box">
+        <text class="metric-value">{{bookMetrics.mastered}}</text>
+        <text class="metric-label">已掌握</text>
+      </view>
+      <view class="metric-box">
+        <text class="metric-value">{{bookMetrics.due}}</text>
+        <text class="metric-label">待复习</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-card reveal delay-2">
+    <view class="section-head">
+      <view>
+        <view class="section-title">切换词书</view>
+        <view class="section-desc">为当前阶段挑一本最适合推进的词书。</view>
+      </view>
+    </view>
+    <block wx:for="{{allBooks}}" wx:key="id">
+      <view class="book-row {{currentBook && currentBook.id === item.id ? 'book-row--active' : ''}}" bindtap="onSelectBook" data-id="{{item.id}}">
+        <view class="book-row__main">
+          <view class="book-row__top">
+            <view class="book-row__title">{{item.name}}</view>
+            <text class="book-row__badge">{{item.exam}}</text>
+          </view>
+          <view class="book-row__desc">{{item.description}}</view>
+        </view>
+        <text class="book-row__action">{{currentBook && currentBook.id === item.id ? '使用中' : '切换 >'}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="section-card reveal delay-3">
+    <view class="section-head">
+      <view>
+        <view class="section-title">导入与备份</view>
+        <view class="section-desc">后续会补充文件导入、导出与换机恢复能力。</view>
+      </view>
+      <text class="section-tag">规划中</text>
+    </view>
+    <button class="secondary-button" bindtap="onFeatureTap">查看后续规划</button>
+  </view>
 </view>

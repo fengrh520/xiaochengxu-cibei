@@ -1,10 +1,68 @@
 <view class="page profile-page">
-  <view class="profile-hero">
-    <view class="profile-top"><view class="profile-avatar">{{profileInitial}}</view><view class="profile-meta"><view class="profile-name">{{activeBookName}}</view><view class="profile-desc">{{goalText}}</view></view></view>
+  <view class="profile-glow profile-glow--one"></view>
+
+  <view class="profile-hero reveal delay-1">
+    <view class="profile-top">
+      <view class="profile-avatar">{{profileInitial}}</view>
+      <view class="profile-meta">
+        <view class="profile-name">我的学习</view>
+        <view class="profile-book">{{activeBookName}}</view>
+        <view class="profile-desc">{{goalText}}</view>
+      </view>
+    </view>
     <view class="profile-divider"></view>
-    <view class="profile-highlight"></view>
+    <view class="profile-highlight">
+      <text class="profile-highlight-badge">学习档案</text>
+      <text class="profile-highlight-text">保留当前词书进度、复习任务和学习节奏。</text>
+    </view>
   </view>
-  <view class="section-card"><view class="section-title">学习进度</view><block wx:for="{{progressStats}}" wx:key="key"><view class="profile-stat-row" bindtap="onStatTap" data-key="{{item.key}}"><view><view class="profile-stat-label">{{item.label}}</view><view class="profile-stat-note">{{item.note}}</view></view><view class="profile-stat-value">{{item.value}}</view></view></block></view>
-  <view class="section-card"><view class="section-title">快捷入口</view><block wx:for="{{shortcuts}}" wx:key="id"><view class="profile-link-row" bindtap="onShortcutTap" data-id="{{item.id}}"><view><view class="profile-link-title">{{item.title}}</view><view class="profile-link-desc">{{item.desc}}</view></view><text class="profile-link-arrow">›</text></view></block></view>
-  <view class="section-card"><view class="section-title">关于与帮助</view><block wx:for="{{supportItems}}" wx:key="id"><view class="profile-link-row" bindtap="onSupportTap" data-id="{{item.id}}"><view><view class="profile-link-title">{{item.title}}</view><view class="profile-link-desc">{{item.desc}}</view></view><text class="profile-link-arrow">›</text></view></block></view>
+
+  <view class="section-card reveal delay-2">
+    <view class="section-title">学习进度</view>
+    <block wx:for="{{progressStats}}" wx:key="key">
+      <view class="profile-stat-row" bindtap="onStatTap" data-key="{{item.key}}">
+        <view class="profile-stat-main">
+          <view class="profile-stat-label">{{item.label}}</view>
+          <view class="profile-stat-note">{{item.note}}</view>
+        </view>
+        <view class="profile-stat-value">{{item.value}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="section-card reveal delay-3">
+    <view class="section-head">
+      <view>
+        <view class="section-title">快捷入口</view>
+        <view class="section-desc">直接进入今天最可能会用到的学习动作。</view>
+      </view>
+    </view>
+    <block wx:for="{{shortcuts}}" wx:key="id">
+      <view class="profile-link-row" bindtap="onShortcutTap" data-id="{{item.id}}">
+        <view class="profile-link-main">
+          <view class="profile-link-title">{{item.title}}</view>
+          <view class="profile-link-desc">{{item.desc}}</view>
+        </view>
+        <text class="profile-link-arrow">></text>
+      </view>
+    </block>
+  </view>
+
+  <view class="section-card reveal delay-4">
+    <view class="section-head">
+      <view>
+        <view class="section-title">关于与帮助</view>
+        <view class="section-desc">把设置和使用说明都集中放在这里。</view>
+      </view>
+    </view>
+    <block wx:for="{{supportItems}}" wx:key="id">
+      <view class="profile-link-row" bindtap="onSupportTap" data-id="{{item.id}}">
+        <view class="profile-link-main">
+          <view class="profile-link-title">{{item.title}}</view>
+          <view class="profile-link-desc">{{item.desc}}</view>
+        </view>
+        <text class="profile-link-arrow">></text>
+      </view>
+    </block>
+  </view>
 </view>
