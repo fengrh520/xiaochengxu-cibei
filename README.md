@@ -1,24 +1,124 @@
-# word-app-miniprogram
+# 词背
 
-Minimal native WeChat Mini Program scaffold that WeChat DevTools can open directly.
+一个基于 Agent 协作开发的微信英语背词小程序。
 
-## Structure
+围绕“词书切换 - 学习新词 - 到期复习 - 错词回看 - 收藏巩固”构建完整学习闭环。它不仅是一个可运行的小程序原型，也是一次真实的 AI / Agent 协作开发实践。
 
-- `project.config.json`: DevTools project config with `miniprogramRoot` set to `miniprogram/`
-- `project.private.config.json`: local-only DevTools overrides
-- `package.json`: optional TypeScript tooling
-- `tsconfig.json`: TypeScript config for Mini Program source files
-- `miniprogram/`: source root for app files and pages
+## 项目定位
 
-## Getting started
+`词背` 面向英语学习场景，重点解决以下几个核心问题：
 
-1. Open `C:\Users\24761\Desktop\word-app-miniprogram\` in WeChat DevTools.
-2. Keep the placeholder appid `touristappid` for local preview, or replace it with a real appid.
-3. Add app files under `miniprogram/` when ready.
+- 如何快速开始新词学习
+- 如何把到期复习、错词回看和收藏巩固组织成闭环
+- 如何通过每日目标、正确率、连续学习和趋势统计建立稳定节奏
+- 如何用 Agent 工具真正参与真实产品开发，而不仅是简单问答
 
-## Optional tooling
+## 核心功能
+
+### 首页
+
+- 展示当前词书、今日目标、待复习数量、正确率、连续学习和近 7 天趋势
+- 支持从首页快速进入学习、复习、错词回看等主流程
+
+### 词书
+
+- 查看当前词书
+- 切换不同词书
+- 为后续导入、备份等能力预留扩展入口
+
+### 复习
+
+- 按到期词、收藏词、错词组织复习队列
+- 让复习具备优先级和节奏感
+
+### 学习
+
+- 单词卡片式学习体验
+- 支持发音、收藏、显示答案
+- 支持标记“记住了 / 忘记了”
+- 自动进入下一词并同步学习进度
+
+### 我的
+
+- 展示累计学习、已掌握、待复习、正确率等数据
+- 支持快捷入口
+- 支持每日目标设置
+- 支持帮助说明查看
+
+## 学习闭环
+
+这个项目不是静态页面集合，而是完整的学习流程原型：
+
+1. 选择词书
+2. 开始新词学习
+3. 记录掌握情况
+4. 生成待复习队列
+5. 回看错词与收藏
+6. 统计今日进度与长期趋势
+
+通过每日目标、正确率、连续学习和复习提醒，用户可以看到自己的学习节奏，而不只是“背过多少词”。
+
+## Agent 协作开发
+
+这个项目并不是传统的纯手工迭代，而是通过多种 Agent / AI 工具协作完成，包括：
+
+- Codex
+- Hermes Agent
+- GPT 系列
+- DeepSeek 系列
+
+在实际开发中，Agent 参与了以下工作：
+
+- 页面结构设计与重构
+- UI 美化与视觉风格统一
+- 学习页、首页 Hero 区等重点模块精修
+- 乱码问题排查与修复
+- 按钮和布局的多屏适配
+- “我的”页快捷入口与设置逻辑补全
+- Git 提交与远端推送交付
+
+项目开发流程可以概括为：
+
+`需求整理 -> Agent 协作 -> 页面实现 -> 调试优化 -> GitHub 交付`
+
+## 项目价值
+
+这个项目体现了个人开发者如何把 Agent 真正用在真实产品开发里：
+
+- 不只是做页面，而是完成完整功能闭环
+- 不只是问答，而是参与实现、调试、重构和交付
+- 不只是 Demo，而是可运行、可展示、可继续迭代的小程序原型
+
+适合用作：
+
+- GitHub 项目展示
+- 个人作品集案例
+- Agent / AI 协作开发实践案例
+- 申请材料中的项目证明
+
+## 技术栈
+
+- WeChat Mini Program
+- TypeScript
+- JavaScript
+- Local Storage
+- Agent Workflow
+
+## 本地运行
+
+1. 使用微信开发者工具打开项目根目录
+2. `miniprogram/` 为小程序源码目录
+3. 如需类型检查，可安装依赖后执行：
 
 ```bash
 npm install
 npm run typecheck
 ```
+
+## 仓库地址
+
+GitHub: [https://github.com/fengrh520/xiaochengxu-cibei](https://github.com/fengrh520/xiaochengxu-cibei)
+
+## 一句话总结
+
+一个由个人开发者通过 Agent 协作完成的微信英语背词小程序，用真实项目验证 AI 驱动开发的效率与可行性。
